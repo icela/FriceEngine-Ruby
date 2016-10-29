@@ -1,16 +1,16 @@
 # Frice engine base class
 
 require 'tk'
-require 'utils.rb'
+require 'pathname'
+require Pathname.new(File.dirname(__FILE__)).realpath + 'utils.rb'
 
-class Game < Frice
+class Game
+  include FriceUtils
   def initialize()
     @objs = []
     @texts = []
     @timers = []
   end
-  def _on_init()
-  end
-  def _on_refresh()
-  end
+  FriceUtils::def_abs :on_init
+  FriceUtils::def_abs :on_refresh
 end
