@@ -1,0 +1,2 @@
+module Frice
+end

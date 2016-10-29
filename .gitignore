@@ -1,0 +1,9 @@
+# Emacs and DrRacket back-up #
+
+*.rkt~
+*.bak
+
+# DrRacket compile output #
+
+*.dep
+*.zo
