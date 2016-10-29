@@ -1,9 +1,3 @@
-# Emacs and DrRacket back-up #
+# Emacs and RubyMine back-up #
 
-*.rkt~
-*.bak
-
-# DrRacket compile output #
-
-*.dep
-*.zo
+*.rb~

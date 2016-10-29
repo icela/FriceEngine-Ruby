@@ -1,6 +1,9 @@
 # Frice engine base class
 
-class Frice
+require 'tk'
+require 'utils.rb'
+
+class Game < Frice
   def initialize()
     @objs = []
     @texts = []
