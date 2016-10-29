@@ -6,7 +6,7 @@ class AbstractMethodCallException < NotImplementedError
 	end
 end
 
-class Class
+class Module
 	def def_abs(name, *args)
 		define_method(name, *args) do |*_|
 			if name == :initialize
