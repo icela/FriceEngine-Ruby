@@ -1,6 +1,7 @@
 # Frice engine base class
 
 require 'tk'
+# require ''
 require 'pathname'
 require_relative 'utils'
 require_relative 'objects'
@@ -8,16 +9,30 @@ require_relative 'texts'
 
 class Game
 	include FriceUtils
-	attr_accessor :refresh_per_second
-
+	attr_accessor :refresh_per_second, :game_title
+	attr_reader :root
 
 	def initialize
+		# TkRoot.methods.each { |a|
+		# 	p a
+		# }
 		@refresh_per_second = 100
 		@objs = []
 		@texts = []
 		@timers = []
-		@root = TkRoot.new
+		@game_title = 'Frice engine'
+		@game_bounds = [100, 100, 500, 500]
 		on_init
+		tk_initialize_information = <<END
+title '#{@game_title}'
+width #{@game_bounds[2]}
+height #{@game_bounds[3]}
+END
+		@root = TkRoot.new do
+			p tk_initialize_information
+			eval tk_initialize_information
+		end
+		@canvas = TkCanvas.new @root
 		# super do
 		# 	on_init
 		# end
@@ -30,6 +45,22 @@ class Game
 		end
 		@main_thread.run
 		Tk.mainloop
+	end
+
+	def bounds(x, y, width, height)
+		@game_bounds[0] = x
+		@game_bounds[1] = y
+		@game_bounds[2] = width
+		@game_bounds[3] = height
+	end
+
+	def size(width, height)
+		@game_bounds[2] = width
+		@game_bounds[3] = height
+	end
+
+	def title(value)
+		@game_title = value
 	end
 
 	def on_init
@@ -50,7 +81,7 @@ class Game
 		elsif obj is_a? AbstractObject
 			@objs += obj
 		else
-			raise TypeNotMatchedException.new "required an AbstractObject, given #{obj.class.name}"
+			raise TypeNotMatchedException.new 'AbstractObject', obj
 		end
 	end
 

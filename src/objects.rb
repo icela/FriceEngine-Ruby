@@ -1,8 +1,8 @@
 require_relative 'utils'
 
 class TypeNotMatchedException < RuntimeError
-	def initialize(info)
-		super info
+	def initialize(required, given)
+		super "required a #{required}, given #{given.class.name}"
 	end
 end
 
@@ -87,7 +87,7 @@ class FObject < PhysicalObject
 
 	def collide_rect(rect)
 		unless rect is_a? PhysicalObject
-			raise TypeNotMatchedException.new "required an PhysicalObject, given #{rect.class.name}"
+			raise TypeNotMatchedException.new 'PhysicalObject', rect
 		end
 		@x + @width >= rect.x and
 				rect.y <= @y + @height and
