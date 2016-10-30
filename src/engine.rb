@@ -9,13 +9,30 @@ require_relative 'texts'
 
 class Game
 	include FriceUtils
-	attr_accessor :refresh_per_second, :game_title
+	attr_accessor :refresh_per_second,
+	              :game_title,
+	              :game_bounds
 	attr_reader :root
+	public :initialize,
+	       :on_init,
+	       :on_click,
+	       :on_last_init,
+	       :on_refresh,
+	       # :bounds,
+	       :size,
+	       :message_box,
+	       :title,
+	       :add_object,
+	       :remove_object,
+	       :clear_objects
+	private :draw_everything
+
 
 	def initialize
 		# TkRoot.methods.each { |a|
 		# 	p a
 		# }
+		# TkCanvas.methods.each { |a| p a }
 		@refresh_per_second = 100
 		@objs = []
 		@texts = []
@@ -32,6 +49,7 @@ END
 			p tk_initialize_information
 			eval tk_initialize_information
 		end
+		# noinspection RubyResolve
 		@canvas = TkCanvas.new @root
 		# super do
 		# 	on_init
@@ -40,9 +58,11 @@ END
 			loop do
 				sleep @refresh_per_second
 				on_refresh
+				draw_everything
 				Tk.update
 			end
 		end
+		on_last_init
 		@main_thread.run
 		Tk.mainloop
 	end
@@ -59,11 +79,32 @@ END
 		@game_bounds[3] = height
 	end
 
+	def message_box(msg = 'information',
+	                title = 'Frice Engine',
+	                type = 'ok',
+	                icon = 'info',
+	                detail = '',
+	                default = 'ok')
+		Tk.messageBox 'type' => type,
+		              'icon' => icon,
+		              'title' => title,
+		              'message' => msg,
+		              'detail' => detail,
+		              'default' => default
+	end
+
+	def draw_everything
+		@canvas
+	end
+
 	def title(value)
 		@game_title = value
 	end
 
 	def on_init
+	end
+
+	def on_last_init
 	end
 
 	def on_refresh
@@ -75,14 +116,33 @@ END
 	def on_exit
 	end
 
-	def add_object(obj)
-		if obj is_a? FText
-			@texts += obj
-		elsif obj is_a? AbstractObject
-			@objs += obj
-		else
-			raise TypeNotMatchedException.new 'AbstractObject', obj
+	def add_object(*objs)
+		objs.each do |obj|
+			if obj is_a? FText
+				@texts += obj
+			elsif obj is_a? AbstractObject
+				@objs += obj
+			else
+				raise TypeNotMatchedException.new 'AbstractObject', obj
+			end
 		end
+	end
+
+	def remove_object(*objs)
+		objs.each do |obj|
+			if obj is_a? FText
+				@texts -= obj
+			elsif obj is_a? AbstractObject
+				@objs -= obj
+			else
+				raise TypeNotMatchedException.new 'AbstractObject', obj
+			end
+		end
+	end
+
+	def clear_objects
+		@objs.clear
+		@texts.clear
 	end
 
 end

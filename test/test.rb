@@ -7,6 +7,12 @@ class Demo < Game
 		@ass = FObject.new
 		@ass.add_anim 233
 	end
+
+	def on_last_init
+		message_box 'ah', 'ass we can'
+	end
+
+
 end
 
 Demo.new
