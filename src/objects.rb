@@ -1,4 +1,5 @@
 require_relative 'utils'
+require_relative 'image'
 
 class TypeNotMatchedException < RuntimeError
 	def initialize(required, given)
@@ -97,4 +98,13 @@ class FObject < PhysicalObject
 end
 
 # a = FObject.new
+
+class ImageObject < FObject
+	def initialize(image)
+		unless image.is_a? FriceImage
+
+		end
+	end
+end
+
 

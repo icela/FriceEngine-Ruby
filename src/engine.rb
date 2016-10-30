@@ -5,6 +5,7 @@ require 'tk'
 require 'pathname'
 require_relative 'utils'
 require_relative 'objects'
+require_relative 'image'
 require_relative 'texts'
 
 class Game
@@ -94,7 +95,11 @@ END
 	end
 
 	def draw_everything
-		@canvas
+		@objs.each do |o|
+			if o.is_a? ImageObject
+				TkImage.new @canvas
+			end
+		end
 	end
 
 	def title(value)
@@ -118,9 +123,9 @@ END
 
 	def add_object(*objs)
 		objs.each do |obj|
-			if obj is_a? FText
+			if obj.is_a? FText
 				@texts += obj
-			elsif obj is_a? AbstractObject
+			elsif obj.is_a? AbstractObject
 				@objs += obj
 			else
 				raise TypeNotMatchedException.new 'AbstractObject', obj
@@ -130,9 +135,9 @@ END
 
 	def remove_object(*objs)
 		objs.each do |obj|
-			if obj is_a? FText
+			if obj.is_a? FText
 				@texts -= obj
-			elsif obj is_a? AbstractObject
+			elsif obj.is_a? AbstractObject
 				@objs -= obj
 			else
 				raise TypeNotMatchedException.new 'AbstractObject', obj
