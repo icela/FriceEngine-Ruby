@@ -9,6 +9,7 @@ end
 
 # noinspection RubyInstanceVariableNamingConvention
 class AbstractObject
+	include FriceUtils
 	attr_accessor :x, :y, :rotate
 
 	def initialize
@@ -100,10 +101,11 @@ end
 # a = FObject.new
 
 class ImageObject < FObject
-	def initialize(image)
-		unless image.is_a? FriceImage
+	attr_accessor :image
 
-		end
+	def initialize(image)
+		check_type image, FriceImage
+		@image = image
 	end
 end
 

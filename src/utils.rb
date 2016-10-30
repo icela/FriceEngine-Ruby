@@ -7,8 +7,8 @@ class AbstractMethodCallException < NotImplementedError
 end
 
 class Module
-	def def_abs(name, *args)
-		define_method(name, *args) do |*_|
+	def def_abs(name)
+		define_method(name) do
 			if name == :initialize
 				message = "abstract method called #{self.class.name}##{name}"
 			else
@@ -20,6 +20,18 @@ class Module
 end
 
 module FriceUtils
+	def check_type(object, expected_type)
+		unless object.is_a? expected_type
+			raise TypeNotMatchedException.new expected_type.name, object
+		end
+	end
+
+	def println(*args)
+		args.each do |a|
+			print a
+		end
+		print "\n"
+	end
 end
 
 

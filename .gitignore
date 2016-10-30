@@ -1,3 +1,7 @@
 # Emacs and RubyMine back-up #
 
 *.rb~
+/.idea/vcs.xml
+/.idea/workspace.xml
+/.idea/encodings.xml
+/.idea/misc.xml
