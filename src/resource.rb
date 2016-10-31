@@ -1,32 +1,29 @@
 # classes have sth 2 do with graphics
 
-require_relative 'objects'
+require 'tk'
+require_relative '../src/objects'
 
-# module ColorResorce
+# module ColorResource
 # 	def initialize(color)
 # 		@color = color
 # 	end
 # end
 
-class FLine < AbstractObject
-	attr_accessor :x1,
-	              :x2,
-	              :y1,
-	              :y2,
-	              :color,
-	              :width
-
-	def initialize(x1, y1, x2, y2, color = 'blue', width = 2)
-		@x1 = x1
-		@x2 = x2
-		@y1 = y1
-		@y2 = y2
-		@width = width
-		@color = color
+class ImageResource
+	def self.from_file(path)
+		ret = TkPhotoImage.new
+		ret.file = path
+		ImageResource.new ret
 	end
-end
 
-class FunctionEffect
-	# TODO
+	# def self.from_url(url)
+	# 	TODO
+	# end
+
+	attr_accessor :image
+
+	def initialize(image)
+		@image = image
+	end
 end
 

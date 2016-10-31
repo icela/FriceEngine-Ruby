@@ -3,15 +3,18 @@
 require 'tk'
 # require ''
 require 'pathname'
-require_relative 'utils/utils'
-require_relative 'objects'
-require_relative 'resource'
-require_relative 'image'
-require_relative 'texts'
 
-# def frice_import(name)
-# require_relative "../src/#{name}"
-# end
+# noinspection RubyResolve
+def frice_import(name)
+	require_relative "../src/#{name}"
+end
+
+require_relative '../src/utils/utils'
+require_relative '../src/objects'
+require_relative '../src/resource'
+require_relative '../src/texts'
+require_relative '../src/graphics'
+require_relative '../src/timer'
 
 class Game
 	include FriceUtils
@@ -171,8 +174,7 @@ END
 
 	def add_time_listener(*timers)
 		timers.each do |t|
-			FTimerListener
-			check_type t
+			check_type t, FTimerListener
 			@timer_listeners.push t
 		end
 	end

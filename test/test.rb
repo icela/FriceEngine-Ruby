@@ -16,7 +16,7 @@ class Demo < Game
 	end
 
 	def on_refresh
-		@shit += 1
+		@shit += 3
 		test_add
 	end
 

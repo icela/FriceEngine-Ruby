@@ -1,5 +1,5 @@
-require_relative 'utils/utils'
-require_relative 'image'
+require_relative '../src/resource'
+require_relative '../src/utils/utils'
 
 class TypeNotMatchedException < RuntimeError
 	def initialize(required, given)
