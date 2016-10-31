@@ -68,6 +68,9 @@ END
 			loop do
 				# println 'thread continuing'
 				on_refresh
+				@timer_listeners.each do |t|
+					t.check
+				end
 				draw_everything
 				# @canvas.pack
 				Tk.update
@@ -174,14 +177,14 @@ END
 
 	def add_time_listener(*timers)
 		timers.each do |t|
-			check_type t, FTimerListener
+			check_type t, FTimeListener
 			@timer_listeners.push t
 		end
 	end
 
 	def remove_time_listener(*timers)
 		timers.each do |t|
-			check_type t
+			check_type t, FTimeListener
 			@timer_listeners.delete t
 		end
 	end
