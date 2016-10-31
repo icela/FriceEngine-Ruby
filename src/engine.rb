@@ -3,14 +3,14 @@
 require 'tk'
 # require ''
 require 'pathname'
-require_relative 'utils'
+require_relative 'utils/utils'
 require_relative 'objects'
-require_relative 'graphics'
+require_relative 'resource'
 require_relative 'image'
 require_relative 'texts'
 
 # def frice_import(name)
-	# require_relative "../src/#{name}"
+# require_relative "../src/#{name}"
 # end
 
 class Game
@@ -52,6 +52,7 @@ place(
 'height' => #{@game_bounds[3]}
 )
 END
+		# noinspection RubyResolve
 		@canvas = TkCanvas.new(@root) do
 			print canvas_initialize_information
 			eval canvas_initialize_information
@@ -63,13 +64,14 @@ END
 			println 'thread start'
 			loop do
 				# println 'thread continuing'
-				sleep (1.0 / @refresh_per_second)
 				on_refresh
 				draw_everything
 				# @canvas.pack
 				Tk.update
+				sleep (1.0 / @refresh_per_second)
 			end
 		end
+		draw_everything
 		on_last_init
 		Thread.start do
 			@main_thread.call
@@ -106,17 +108,18 @@ END
 
 	def draw_everything
 		@objs.each do |o|
-			println 'ass we can'
+			# println 'drawing everything'
 			if o.is_a? ImageObject
 				# TkcImage.new @canvas
 			elsif o.is_a? FLine
 				TkcLine.new(@canvas, o.x1, o.y1, o.x2, o.y2,
-				           'width' => o.width,
-				           'fill' => o.color)
-			# elsif
+				            'width' => o.width,
+				            'fill' => o.color)
+				# elsif
 			end
 		end
 		@texts.each do |t|
+			# TODO
 		end
 	end
 
@@ -167,15 +170,16 @@ END
 	end
 
 	def add_time_listener(*timers)
-		timers.each do |t| FTimerListener
-			check_type t 
+		timers.each do |t|
+			FTimerListener
+			check_type t
 			@timer_listeners.push t
 		end
 	end
 
 	def remove_time_listener(*timers)
 		timers.each do |t|
-			check_type t 
+			check_type t
 			@timer_listeners.delete t
 		end
 	end

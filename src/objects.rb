@@ -1,4 +1,4 @@
-require_relative 'utils'
+require_relative 'utils/utils'
 require_relative 'image'
 
 class TypeNotMatchedException < RuntimeError
@@ -104,7 +104,7 @@ class ImageObject < FObject
 	attr_accessor :image
 
 	def initialize(image)
-		check_type image, FriceImage
+		check_type image, ImageResource
 		@image = image
 	end
 end

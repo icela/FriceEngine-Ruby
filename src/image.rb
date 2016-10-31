@@ -2,15 +2,15 @@
 
 require 'tk'
 
-class FriceImage
+class ImageResource
 	def self.from_file(path)
 		ret = TkPhotoImage.new
 		ret.file = path
-		FriceImage.new ret
+		ImageResource.new ret
 	end
 
 	# def self.from_url(url)
-		# TODO
+	# 	TODO
 	# end
 
 	attr_accessor :image
