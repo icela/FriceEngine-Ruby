@@ -36,7 +36,8 @@ class Game
 		@timer_listeners = []
 		@game_title = 'Frice Engine'
 		@game_bounds = [100, 100, 500, 500]
-		on_init
+		@game_background =
+				on_init
 		tk_initialize_information = <<END
 title '#{@game_title}'
 width #{@game_bounds[2]}
@@ -113,20 +114,39 @@ END
 	end
 
 	def draw_everything
+		# clear_screen
 		@objs.each do |o|
 			# println 'drawing everything'
-			if o.is_a? ImageObject
+			if o.is_a? ImageObject then
 				# TkcImage.new @canvas
-			elsif o.is_a? FLine
-				TkcLine.new(@canvas, o.x1, o.y1, o.x2, o.y2,
+			elsif o.is_a? FLine then
+				TkcLine.new @canvas, o.x1, o.y1, o.x2, o.y2,
 				            'width' => o.width,
-				            'fill' => o.color)
-				# elsif
+				            'fill' => o.color
+			elsif o.is_a? ShapeObject
+				case o.shape
+					when 'rectangle', 'rect' then
+						TkcRectangle.new @canvas, o.x, o.y, o.width, o.height,
+						                 'fill' => o.color
+					when 'oval' then
+						TkcOval.new @canvas, o.x, o.y, o.width, o.height,
+						            'fill' => o.color
+					else
+						# type code here
+				end
 			end
 		end
+
 		@texts.each do |t|
 			# TODO
 		end
+	end
+
+	def clear_screen
+		TkcRectangle.new @canvas, 0, 0,
+		                 @game_bounds[2],
+		                 @game_bounds[3],
+		                 'fill' => 'white'
 	end
 
 	def title(value)
@@ -207,7 +227,8 @@ END
 	       :remove_object,
 	       :remove_time_listener,
 	       :clear_objects,
-	       :clear_time_listeners
+	       :clear_time_listeners,
+	       :clear_screen
 
 	private :draw_everything
 

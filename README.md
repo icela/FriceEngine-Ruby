@@ -13,6 +13,9 @@ class Demo < Game
 	end
 
 	def on_last_init
+		shape = ShapeObject.new('rect', 1, 1, 100, 100)
+		shape.color = 'red'
+		add_object shape
 	end
 	def on_refresh
 	end

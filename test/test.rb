@@ -13,6 +13,9 @@ class Demo < Game
 	def on_last_init
 		# TkcLine.new(@canvas, 5, 5, 100, 100, 'fill' => 'blue', 'width' => 2)
 		# message_box 'ah', 'ass we can'
+		shape = ShapeObject.new('rect', 1, 1, 100, 100)
+		shape.color = 'red'
+		add_object shape
 	end
 
 	def on_refresh

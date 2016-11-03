@@ -59,7 +59,16 @@ class PhysicalObject < AbstractObject
 end
 
 class FObject < PhysicalObject
-	attr_reader :force, :targets, :anims
+	attr_accessor :rotate,
+	              :x,
+	              :y,
+	              :height,
+	              :width
+
+	attr_reader :force,
+	            :targets,
+	            :anims
+
 
 	def initialize
 		@anims = []
@@ -75,6 +84,10 @@ class FObject < PhysicalObject
 
 	def remove_anim(*anims)
 		@anims.delete anims
+	end
+
+	def clear_anim()
+		@anims.clear
 	end
 
 	# noinspection RubyInstanceVariableNamingConvention
@@ -96,6 +109,14 @@ class FObject < PhysicalObject
 				@x <= rect.x + rect.width and
 				@y <= rect.y + rect.height
 	end
+
+	public :add_anim,
+	       :remove_anim,
+	       :clear_anim,
+	       :move,
+	       :rotate
+
+	protected :collide_rect
 end
 
 # a = FObject.new
@@ -108,5 +129,25 @@ class ImageObject < FObject
 		@image = image
 	end
 end
+
+class ShapeObject < FObject
+	attr_accessor :shape,
+	              :color,
+	              :height,
+	              :width,
+	              :x,
+	              :y
+
+	# noinspection RubyInstanceVariableNamingConvention
+	def initialize(shape, color = 'blue', x, y, width, height)
+		@shape = shape
+		@color = color
+		@x = x
+		@y = y
+		@width = width
+		@height = height
+	end
+end
+
 
 
