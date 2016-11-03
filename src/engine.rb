@@ -117,8 +117,9 @@ END
 		# clear_screen
 		@objs.each do |o|
 			# println 'drawing everything'
-			if o.is_a? ImageObject then
-				# TkcImage.new @canvas
+			if o.is_a? ImageObject
+				TkcImage.new @canvas, o.x, o.y,
+				             'image' => o.image.image
 			elsif o.is_a? FLine then
 				TkcLine.new @canvas, o.x1, o.y1, o.x2, o.y2,
 				            'width' => o.width,

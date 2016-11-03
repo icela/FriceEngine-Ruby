@@ -122,11 +122,16 @@ end
 # a = FObject.new
 
 class ImageObject < FObject
-	attr_accessor :image
+	attr_accessor :image,
+	              :x,
+	              :y
 
-	def initialize(image)
+	# noinspection RubyInstanceVariableNamingConvention
+	def initialize(image, x, y)
 		check_type image, ImageResource
 		@image = image
+		@x = x
+		@y = y
 	end
 end
 

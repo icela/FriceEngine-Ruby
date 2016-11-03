@@ -13,17 +13,25 @@ class ImageResource
 	def self.from_file(path)
 		ret = TkPhotoImage.new
 		ret.file = path
-		ImageResource.new ret
+		return ImageResource.new ret
+	end
+
+	def self.empty
+		return TkPhotoImage.new.blank
 	end
 
 	# def self.from_url(url)
 	# 	TODO
 	# end
 
-	attr_accessor :image
+	attr_accessor :image,
+	              :height,
+	              :width
 
 	def initialize(image)
 		@image = image
+		@width = image.width
+		@height = image.height
 	end
 end
 

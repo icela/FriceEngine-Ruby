@@ -4,7 +4,7 @@ class Demo < Game
 	def on_init
 		@shit = 0
 		title 'boy next door'
-		size 300, 300
+		size 500, 500
 		# @ass = FObject.new
 		# @ass.add_anim 233
 		add_object FLine.new(5, 5, 100, 100)
@@ -15,7 +15,9 @@ class Demo < Game
 		# message_box 'ah', 'ass we can'
 		shape = ShapeObject.new('rect', 1, 1, 100, 100)
 		shape.color = 'red'
-		add_object shape, SimpleText.new(200, 200, 'Ah I\'m fucking coming', 'green')
+		image = ImageResource.from_file 'fork_you.gif'
+		image_o = ImageObject.new image, 300, 300
+		add_object shape, image_o, SimpleText.new(200, 200, 'Ah I\'m fucking coming', 'green')
 	end
 
 	def on_refresh
