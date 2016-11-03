@@ -11,13 +11,13 @@
 
 # images #
 
-*.png
-*.jpg
-*.jpeg
-*.gif
-*.svg
-*.webp
-*.psd
+# *.png
+# *.jpg
+# *.jpeg
+# *.gif
+# *.svg
+# *.webp
+# *.psd
 
 # video #
 
