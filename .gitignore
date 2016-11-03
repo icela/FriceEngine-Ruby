@@ -1,7 +1,28 @@
 # Emacs and RubyMine back-up #
 
 *.rb~
+
+# RubyMine configuration files #
+
 /.idea/vcs.xml
 /.idea/workspace.xml
 /.idea/encodings.xml
 /.idea/misc.xml
+
+# images #
+
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg
+*.webp
+*.psd
+
+# video #
+
+*.avi
+*.rmvb
+*.mp4
+*.flv
+*.wmv
