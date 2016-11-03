@@ -138,7 +138,11 @@ END
 		end
 
 		@texts.each do |t|
-			# TODO
+			if t.is_a? SimpleText
+				TkcText.new @canvas, t.x, t.y,
+				            'fill' => t.color,
+				            'text' => t.text
+			end
 		end
 	end
 

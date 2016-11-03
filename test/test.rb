@@ -15,7 +15,7 @@ class Demo < Game
 		# message_box 'ah', 'ass we can'
 		shape = ShapeObject.new('rect', 1, 1, 100, 100)
 		shape.color = 'red'
-		add_object shape
+		add_object shape, SimpleText.new(200, 200, 'Ah I\'m fucking coming', 'green')
 	end
 
 	def on_refresh
