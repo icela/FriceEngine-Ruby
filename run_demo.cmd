@@ -1,3 +1,3 @@
 @echo off
-
-ruby ./test/test.rb
+cd test
+ruby test.rb
