@@ -9,6 +9,9 @@ require_relative '../src/objects'
 # 	end
 # end
 
+class FManager
+end
+
 class ImageResource
 	def self.from_file(path)
 		ret = TkPhotoImage.new

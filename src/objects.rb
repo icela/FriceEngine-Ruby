@@ -1,3 +1,5 @@
+# object models
+
 require_relative '../src/resource'
 require_relative '../src/utils/utils'
 
@@ -78,12 +80,30 @@ class FObject < PhysicalObject
 		@collide_box = nil
 	end
 
+	def run_anims
+		@anims.each do |anim|
+		# TODO
+		end
+	end
+
+	def check_collision
+		@targets.each do |tgt|
+		# TODO
+		end
+	end
+
 	def add_anim(*anims)
-		@anims.insert anims
+		anims.each do |anim|
+		check_type anim, FAim
+			@anims.insert anim
+		end
 	end
 
 	def remove_anim(*anims)
-		@anims.delete anims
+		anims.each do |anim|
+		check_type anim, FAim
+			@anims.delete anims
+		end
 	end
 
 	def clear_anim()
@@ -101,9 +121,7 @@ class FObject < PhysicalObject
 	end
 
 	def collide_rect(rect)
-		unless rect is_a? PhysicalObject
-			raise TypeNotMatchedException.new 'PhysicalObject', rect
-		end
+		check_type rect, PhysicalObject
 		@x + @width >= rect.x and
 				rect.y <= @y + @height and
 				@x <= rect.x + rect.width and

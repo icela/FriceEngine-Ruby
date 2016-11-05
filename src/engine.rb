@@ -10,11 +10,12 @@ def frice_import(name)
 end
 
 require_relative '../src/utils/utils'
+require_relative '../src/timer'
+require_relative '../src/anims'
 require_relative '../src/objects'
 require_relative '../src/resource'
 require_relative '../src/texts'
 require_relative '../src/graphics'
-require_relative '../src/timer'
 
 class Game
 	include FriceUtils
@@ -116,6 +117,10 @@ END
 	def draw_everything
 		# clear_screen
 		@objs.each do |o|
+			# if o.is_a? FObject then
+				# o.run_anims
+				# o.check_collision
+			# end
 			# println 'drawing everything'
 			if o.is_a? ImageObject
 				TkcImage.new @canvas, o.x, o.y,
