@@ -16,8 +16,13 @@ class Demo < Game
 		shape = ShapeObject.new('rect', 1, 1, 100, 100)
 		shape.color = 'red'
 		image = ImageResource.from_file 'fork_you.gif'
-		image_o = ImageObject.new image, 300, 300
-		add_object shape, image_o, SimpleText.new(200, 200, 'Ah I\'m fucking coming', 'green')
+		images = []
+		(1..7).each do |i|
+			images[i] = ImageResource.from_file "#{i}.gif"
+			add_object(ImageObject.new images[i], (i % 4) * 100 + 150, (i / 4) * 100 + 150)
+		end
+		image_o = ImageObject.new image, 300, 400
+		add_object shape, image_o, SimpleText.new(200, 200, 'Ah I\'m fucking coming, this is the demo for FriceEngine-Ruby.', 'purple')
 	end
 
 	def on_refresh
