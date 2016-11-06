@@ -73,8 +73,8 @@ class FObject < PhysicalObject
 
 
 	def initialize
-		@anims = []
-		@targets = []
+		@anims = [ ]
+		@targets = { }
 		# TODO achieve moves
 		@force = nil
 		@collide_box = nil
@@ -94,14 +94,14 @@ class FObject < PhysicalObject
 
 	def add_anim(*anims)
 		anims.each do |anim|
-		check_type anim, FAim
+		check_type anim, FAnim
 			@anims.insert anim
 		end
 	end
 
 	def remove_anim(*anims)
 		anims.each do |anim|
-		check_type anim, FAim
+		check_type anim, FAnim
 			@anims.delete anims
 		end
 	end

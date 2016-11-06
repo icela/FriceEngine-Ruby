@@ -32,9 +32,9 @@ class Game
 		# }
 		# TkCanvas.methods.each { |a| p a }
 		@refresh_per_second = 100
-		@objs = []
-		@texts = []
-		@timer_listeners = []
+		@objs = [ ]
+		@texts = [ ]
+		@timer_listeners = [ ]
 		@game_title = 'Frice Engine'
 		@game_bounds = [100, 100, 500, 500]
 		@game_background =
@@ -182,9 +182,9 @@ END
 		objs.each do |obj|
 			check_type obj, AbstractObject
 			if obj.is_a? FText
-				@texts.push obj
+				@texts.insert obj
 			else
-				@objs.push obj
+				@objs.insert obj
 			end
 		end
 	end
@@ -208,7 +208,7 @@ END
 	def add_time_listener(*timers)
 		timers.each do |t|
 			check_type t, FTimeListener
-			@timer_listeners.push t
+			@timer_listeners.insert t
 		end
 	end
 

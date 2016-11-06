@@ -4,6 +4,11 @@ class FAnim
 end
 
 class MoveAnim < FAnim
+	# noinspection RubyInstanceVariableNamingConvention
+	def initialize(x, y)
+		@x = x
+		@y = y
+	end
 end
 
 class ScaleAnim < FAnim
