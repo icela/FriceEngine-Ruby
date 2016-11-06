@@ -10,7 +10,7 @@ require_relative '../src/objects'
 # end
 
 class FManager
-	@res = {}
+	@res = { }
 
 	def self.create(path)
 	end

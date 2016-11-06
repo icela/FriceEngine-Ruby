@@ -4,6 +4,9 @@ class FAnim
 end
 
 class MoveAnim < FAnim
+	attr_accessor :x,
+	              :y
+
 	# noinspection RubyInstanceVariableNamingConvention
 	def initialize(x, y)
 		@x = x
