@@ -36,7 +36,10 @@ class WebImageManager < FManager
 	end
 end
 
-class ImageResource
+class FResource
+end
+
+class ImageResource < FResource
 	def self.from_file(path)
 		ImageResource.new ImageManager.get(path)
 	end

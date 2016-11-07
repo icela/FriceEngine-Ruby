@@ -1,6 +1,7 @@
 # object models
 
 require_relative '../src/resource'
+require_relative '../src/anims'
 require_relative '../src/utils/utils'
 
 class TypeNotMatchedException < RuntimeError
@@ -73,6 +74,7 @@ class FObject < PhysicalObject
 
 
 	def initialize
+		super
 		@anims = [ ]
 		@targets = { }
 		# TODO achieve moves
@@ -82,26 +84,30 @@ class FObject < PhysicalObject
 
 	def run_anims
 		@anims.each do |anim|
-		# TODO
+			if anim.is_a? MoveAnim
+				x, y = anim.delta
+				# p 'in object.rb', x, y
+				move x, y
+			end
 		end
 	end
 
 	def check_collision
 		@targets.each do |tgt|
-		# TODO
+			# TODO
 		end
 	end
 
 	def add_anim(*anims)
 		anims.each do |anim|
-		check_type anim, FAnim
-			@anims.insert anim
+			check_type anim, FAnim
+			@anims.push anim
 		end
 	end
 
 	def remove_anim(*anims)
 		anims.each do |anim|
-		check_type anim, FAnim
+			check_type anim, FAnim
 			@anims.delete anims
 		end
 	end
@@ -132,7 +138,9 @@ class FObject < PhysicalObject
 	       :remove_anim,
 	       :clear_anim,
 	       :move,
-	       :rotate
+	       :rotate,
+	       :run_anims,
+	       :check_collision
 
 	protected :collide_rect
 end
@@ -146,6 +154,7 @@ class ImageObject < FObject
 
 	# noinspection RubyInstanceVariableNamingConvention
 	def initialize(image, x, y)
+		super()
 		check_type image, ImageResource
 		@image = image
 		@x = x
@@ -163,6 +172,7 @@ class ShapeObject < FObject
 
 	# noinspection RubyInstanceVariableNamingConvention
 	def initialize(shape, color = 'blue', x, y, width, height)
+		super()
 		@shape = shape
 		@color = color
 		@x = x

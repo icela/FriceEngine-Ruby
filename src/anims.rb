@@ -11,6 +11,7 @@ end
 
 class MoveAnim < FAnim
 	def initialize
+		super
 		@last_refresh = @start
 	end
 
@@ -31,14 +32,20 @@ class SimpleMove < MoveAnim
 
 	# noinspection RubyInstanceVariableNamingConvention
 	def initialize(x, y)
+		super()
 		@x = x
 		@y = y
 	end
 
 	def delta
-		#
+		dt = Clock.current - @last_refresh
+		@last_refresh = Clock.current
+		[dt * @x / 1e3, dt * @y / 1e3]
 	end
 end
 
 class AccelerateMove < MoveAnim
+	def initialize(x, y)
+		super()
+	end
 end

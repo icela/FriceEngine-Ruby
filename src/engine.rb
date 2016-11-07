@@ -31,14 +31,14 @@ class Game
 		# 	p a
 		# }
 		# TkCanvas.methods.each { |a| p a }
-		@refresh_per_second = 100
+		@refresh_per_second = 10
 		@objs = [ ]
 		@texts = [ ]
 		@timer_listeners = [ ]
 		@game_title = 'Frice Engine'
 		@game_bounds = [100, 100, 500, 500]
-		@game_background =
-				on_init
+		on_init
+		@game_timer = FTimer.new @refresh_per_second
 		tk_initialize_information = <<END
 title '#{@game_title}'
 width #{@game_bounds[2]}
@@ -68,15 +68,16 @@ END
 		@main_thread = -> do
 			println 'thread start'
 			loop do
-				# println 'thread continuing'
-				on_refresh
-				@timer_listeners.each do |t|
-					t.check
+				if @game_timer.ended
+					# println 'thread continuing'
+					on_refresh
+					@timer_listeners.each do |t|
+						t.check
+					end
+					draw_everything
+					# @canvas.pack
+					Tk.update
 				end
-				draw_everything
-				# @canvas.pack
-				Tk.update
-				sleep (1.0 / @refresh_per_second)
 			end
 		end
 		draw_everything
@@ -115,12 +116,12 @@ END
 	end
 
 	def draw_everything
-		# clear_screen
+		clear_screen
 		@objs.each do |o|
-			# if o.is_a? FObject then
-				# o.run_anims
+			if o.is_a? FObject
+				o.run_anims
 				# o.check_collision
-			# end
+			end
 			# println 'drawing everything'
 			if o.is_a? ImageObject
 				TkcImage.new @canvas, o.x, o.y,
