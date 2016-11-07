@@ -4,6 +4,8 @@ Ruby edition of frice engine is a little different from others(JVM/CLR).
   
 It's based on Tk, so it might be a little sluggish :joy:.
 
+Unfortunately, I didn't find ways to achieve double buffer. So this version of Frice Engine will display scenes with mysterious blinking :joy:.
+
 # Use
 
 ```ruby
