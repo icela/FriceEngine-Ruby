@@ -22,7 +22,9 @@ class Demo < Game
 			add_object(ImageObject.new images[i], (i % 4) * 100 + 150, (i / 4) * 100 + 150)
 		end
 		image_o = ImageObject.new image, 300, 400
-		add_object shape, image_o, SimpleText.new(200, 200, 'Ah I\'m fucking coming, this is the demo for FriceEngine-Ruby.', 'purple')
+		add_object shape
+		add_object image_o
+		add_object SimpleText.new(200, 200, 'Ah I\'m fucking coming, this is the demo for FriceEngine-Ruby.', 'purple')
 	end
 
 	def on_refresh

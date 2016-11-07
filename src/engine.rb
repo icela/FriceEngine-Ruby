@@ -2,7 +2,6 @@
 
 require 'tk'
 # require ''
-require 'pathname'
 
 # noinspection RubyResolve
 def frice_import(name)
@@ -17,6 +16,7 @@ require_relative '../src/resource'
 require_relative '../src/texts'
 require_relative '../src/graphics'
 
+# noinspection RubyTooManyInstanceVariablesInspection
 class Game
 	include FriceUtils
 	attr_accessor :refresh_per_second,
@@ -182,9 +182,9 @@ END
 		objs.each do |obj|
 			check_type obj, AbstractObject
 			if obj.is_a? FText
-				@texts.insert obj
+				@texts.push obj
 			else
-				@objs.insert obj
+				@objs.push obj
 			end
 		end
 	end
@@ -208,7 +208,7 @@ END
 	def add_time_listener(*timers)
 		timers.each do |t|
 			check_type t, FTimeListener
-			@timer_listeners.insert t
+			@timer_listeners.push t
 		end
 	end
 

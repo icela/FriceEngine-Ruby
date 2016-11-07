@@ -106,7 +106,7 @@ class FObject < PhysicalObject
 		end
 	end
 
-	def clear_anim()
+	def clear_anim
 		@anims.clear
 	end
 

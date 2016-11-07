@@ -10,16 +10,15 @@ require_relative '../src/objects'
 # end
 
 class FManager
-	@res = { }
-
 	def self.create(path)
 	end
 
 	def self.get(path)
+		@res ||= { }
 		return @res[path].clone if @res.has_key? path
 		new = create path
 		@res[path] = new
-		new.clone
+		new
 	end
 end
 
