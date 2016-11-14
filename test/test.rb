@@ -17,7 +17,7 @@ class Demo < Game
 		shape.color = 'red'
 		image = ImageResource.from_file 'fork_you.gif'
 		images = []
-		(1..7).each do |i|
+		(0..8).each do |i|
 			images[i] = ImageResource.from_file "#{i}.gif"
 			add_object(ImageObject.new images[i], (i % 4) * 100 + 150, (i / 4) * 100 + 150)
 		end
