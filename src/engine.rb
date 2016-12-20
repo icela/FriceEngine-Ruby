@@ -48,20 +48,7 @@ END
 			print tk_initialize_information
 			eval tk_initialize_information
 		end
-		# noinspection RubyResolve
-		canvas_initialize_information = <<END
-place(
-'x' => 0,
-'y' => 0,
-'width' => #{@game_bounds[2]},
-'height' => #{@game_bounds[3]}
-)
-END
-		# noinspection RubyResolve
-		@canvas = TkCanvas.new(@root) do
-			print canvas_initialize_information
-			eval canvas_initialize_information
-		end
+		@canvas = new_canvas
 		# super do
 		# 	on_init
 		# end
@@ -87,6 +74,23 @@ END
 		end
 		println 'engine start'
 		Tk.mainloop
+	end
+
+	def new_canvas
+		# noinspection RubyResolve
+		canvas_initialize_information = <<END
+place(
+'x' => 0,
+'y' => 0,
+'width' => #{@game_bounds[2]},
+'height' => #{@game_bounds[3]}
+)
+END
+		# noinspection RubyResolve
+		return TkCanvas.new(@root) do
+			print canvas_initialize_information
+			eval canvas_initialize_information
+		end
 	end
 
 	def bounds(x, y, width, height)
@@ -116,6 +120,7 @@ END
 	end
 
 	def draw_everything
+		@canvas = new_canvas
 		clear_screen
 		@objs.each do |o|
 			if o.is_a? FObject
@@ -241,6 +246,7 @@ END
 	       :clear_time_listeners,
 	       :clear_screen
 
-	private :draw_everything
+	private :draw_everything,
+	        :new_canvas
 
 end
