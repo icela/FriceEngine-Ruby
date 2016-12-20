@@ -31,7 +31,7 @@ class Game
 		# 	p a
 		# }
 		# TkCanvas.methods.each { |a| p a }
-		@refresh_per_second = 10
+		@refresh_per_second = 100
 		@objs = [ ]
 		@texts = [ ]
 		@timer_listeners = [ ]

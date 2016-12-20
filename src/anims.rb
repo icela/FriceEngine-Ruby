@@ -47,5 +47,11 @@ end
 class AccelerateMove < MoveAnim
 	def initialize(x, y)
 		super()
+		@x = x
+		@y = y
+	end
+
+	def delta
+		#
 	end
 end

@@ -3,7 +3,7 @@ require_relative '../src/engine'
 class Shit < Game
 	def on_init
 		size 300, 300
-		@ass_we_can = FTimer.new 1000
+		@ass_we_can = FTimer.new 10
 		@boy_next_door = 10
 	end
 	def on_refresh
