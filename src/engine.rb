@@ -4,6 +4,12 @@ require 'tk'
 require 'tk/canvas'
 # require ''
 
+module TkItemConfigOptkeys
+	def itemconfig_hash_kv(id, keys, enc_mode = [], conf = [])
+		hash_kv(__conv_item_keyonly_opts(id, keys), enc_mode, conf)
+	end
+end
+
 # noinspection RubyResolve
 def frice_import(name)
 	require_relative "../src/#{name}"
@@ -33,9 +39,9 @@ class Game
 		# }
 		# TkCanvas.methods.each { |a| p a }
 		@refresh_per_second = 100
-		@objs = [ ]
-		@texts = [ ]
-		@timer_listeners = [ ]
+		@objs = []
+		@texts = []
+		@timer_listeners = []
 		@game_title = 'Frice Engine'
 		@game_bounds = [100, 100, 500, 500]
 		on_init

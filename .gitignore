@@ -77,3 +77,7 @@ build-iPhoneSimulator/
 *.mp4
 *.flv
 *.wmv
+.idea/runConfigurations/IRB_console__FriceEngine_Ruby.xml
+.idea/runConfigurations/test.xml
+.idea/runConfigurations/test2.xml
+.idea/runConfigurations/test3.xml
