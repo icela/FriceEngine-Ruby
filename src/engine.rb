@@ -51,6 +51,7 @@ title '#{@game_title}'
 width #{@game_bounds[2]}
 height #{@game_bounds[3]}
 END
+		# noinspection RubyArgCount
 		@root = TkRoot.new do
 			print tk_initialize_information
 			eval tk_initialize_information
