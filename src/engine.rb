@@ -1,6 +1,7 @@
 # Frice engine base class
 
 require 'tk'
+require 'tk/canvas'
 # require ''
 
 # noinspection RubyResolve
@@ -86,7 +87,7 @@ place(
 'height' => #{@game_bounds[3]}
 )
 END
-		# noinspection RubyResolve
+		# noinspection RubyResolve,RubyUnnecessaryReturnStatement
 		return TkCanvas.new(@root) do
 			print canvas_initialize_information
 			eval canvas_initialize_information
